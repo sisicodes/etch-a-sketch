@@ -1,13 +1,27 @@
 
-
-.container {
+h1 {
+    color: goldenrod;
+    text-align: center;
+}
+.mainContainer {
     background-color: red;
-    height: 600px;
-    width: 600px;
+    height: 960px;
+    width: 960px;
     display: flex;
     flex-direction: column; 
     padding: 24px;
-    padding-bottom: 120px;
+    padding-bottom: 50px;
+    border-radius: 16px;
+    margin: 24px auto;
+}
+
+.container {
+    background-color: white;
+    height: 960px;
+    width: 960px;
+    display: flex;
+    flex-direction: column; 
+    padding: 0px;
     border-radius: 16px;
 }
 
@@ -25,4 +39,16 @@
 
 .square.hover {
     background-color:black;
+}
+
+button {
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 16px;
+    margin-top:8px;
+}
+
+.button-container {
+    display:flex;
+    justify-content: space-between;
 }

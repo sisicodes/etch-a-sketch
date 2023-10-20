@@ -18,15 +18,53 @@ function createGrid(num) {
             //    square.classList.add('hover');
             //})
             row.append(square);
+            let gridArray = document.querySelectorAll('.square');
+            gridArray.forEach(function(elem) {
+                elem.addEventListener('mouseenter', () => {
+                    elem.classList.add('hover');
+    })
+})
         }
 
 
     }
 }
-createGrid(100);
-let gridArray = document.querySelectorAll('.square');
+
+function clearGrid() {
+    let gridArray = document.querySelectorAll('.square');
+    gridArray.forEach(function(elem) {
+        elem.classList.remove('hover');
+    })
+};
+
+function newGrid() {
+    clearGrid();
+    let num = prompt('grid size?', 1);
+    let gridArray = document.querySelectorAll('.square');
+    gridArray.forEach(function(elem) {
+        elem.remove();
+        elem.removeEventListener('mouseenter', () => {
+            elem.classList.add('hover');
+        });
+    let rowArray = document.querySelectorAll('.row');
+    rowArray.forEach(function(elem) {
+        elem.remove();
+    })
+    });
+    createGrid(num);
+}
+const clearBtn = document.querySelector('#clear');
+clearBtn.addEventListener('click', clearGrid);
+
+const gridBtn = document.querySelector('#grid');
+gridBtn.addEventListener('click', newGrid)
+
+
+createGrid(16);
+/*let gridArray = document.querySelectorAll('.square');
 gridArray.forEach(function(elem) {
     elem.addEventListener('mouseenter', () => {
         elem.classList.add('hover');
     })
-})
+})*/
+
