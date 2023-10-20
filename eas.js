@@ -23,7 +23,7 @@ function createGrid(num) {
 
     }
 }
-createGrid(16);
+createGrid(100);
 let gridArray = document.querySelectorAll('.square');
 gridArray.forEach(function(elem) {
     elem.addEventListener('mouseenter', () => {
