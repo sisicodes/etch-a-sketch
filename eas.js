@@ -1,36 +1,16 @@
+/*
+initialize the grid to be 24x24
+*/
+//container information
 const container = document.querySelector('.container');
+const square_size = 960
 
+//button functionality
 const clearBtn = document.querySelector('#clear');
 clearBtn.addEventListener('click', clearGrid);
 
 const gridBtn = document.querySelector('#grid');
 gridBtn.addEventListener('click', newGrid)
-
-function createGrid(num) {
-    let row;
-    let square;
-    for (let i=0; i<num; i++) {
-        row = document.createElement('div');
-        row.classList.add('row');
-        container.append(row);
-        //test= document.createElement('div');
-
-        for (let j=0; j<num; j++) {
-            square= document.createElement('div');
-            square.classList.add('square');
-            square.classList.add(`column${j+1}`)
-            row.append(square);
-            let gridArray = document.querySelectorAll('.square');
-            gridArray.forEach(function(elem) {
-                elem.addEventListener('mouseenter', () => {
-                    elem.classList.add('hover');
-    })
-})
-        }
-
-    }
-}
-
 
 function clearGrid() {
     let gridArray = document.querySelectorAll('.square');
@@ -42,14 +22,45 @@ function clearGrid() {
 function newGrid() {
     clearGrid();
     let num = prompt('grid size?', 'Choose a number from 1-100');
-    let gridArray = document.querySelectorAll('.square');
+    if (!(num >=1 && num<=100)) {
+        newGrid();
+    } else {
     while(container.hasChildNodes()) {
         container.removeChild(container.firstChild);
     }
     createGrid(num);
+    }
+}
+
+//grid functionality
+function createGrid(num) {
+    let square;
+    let dimension = getSquareHeight(num);
+    for (let i=0; i<num*num; i++) {
+        square = document.createElement('div');
+        square.classList.add('square');
+        container.append(square);
+        square.style.height = dimension;
+        square.style.width = dimension;
+    }
+    let gridArray = document.querySelectorAll('.square');
+    gridArray.forEach(function(elem) {
+        elem.addEventListener('mouseenter', () => {
+            elem.classList.add('hover');
+        })
+    })
+}
+
+//square size functionality
+function getSquareHeight(num) {
+    let pixelSize = Math.floor(square_size/num);
+    return `${pixelSize}px`
+
 }
 
 
+
+
 //initialize website
-createGrid(20);
+createGrid(24);
 
