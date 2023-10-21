@@ -1,5 +1,10 @@
-
 const container = document.querySelector('.container');
+
+const clearBtn = document.querySelector('#clear');
+clearBtn.addEventListener('click', clearGrid);
+
+const gridBtn = document.querySelector('#grid');
+gridBtn.addEventListener('click', newGrid)
 
 function createGrid(num) {
     let row;
@@ -14,9 +19,6 @@ function createGrid(num) {
             square= document.createElement('div');
             square.classList.add('square');
             square.classList.add(`column${j+1}`)
-            //square.addEventListener('mouseenter', () => {
-            //    square.classList.add('hover');
-            //})
             row.append(square);
             let gridArray = document.querySelectorAll('.square');
             gridArray.forEach(function(elem) {
@@ -26,9 +28,9 @@ function createGrid(num) {
 })
         }
 
-
     }
 }
+
 
 function clearGrid() {
     let gridArray = document.querySelectorAll('.square');
@@ -39,32 +41,15 @@ function clearGrid() {
 
 function newGrid() {
     clearGrid();
-    let num = prompt('grid size?', 1);
+    let num = prompt('grid size?', 'Choose a number from 1-100');
     let gridArray = document.querySelectorAll('.square');
-    gridArray.forEach(function(elem) {
-        elem.remove();
-        elem.removeEventListener('mouseenter', () => {
-            elem.classList.add('hover');
-        });
-    let rowArray = document.querySelectorAll('.row');
-    rowArray.forEach(function(elem) {
-        elem.remove();
-    })
-    });
+    while(container.hasChildNodes()) {
+        container.removeChild(container.firstChild);
+    }
     createGrid(num);
 }
-const clearBtn = document.querySelector('#clear');
-clearBtn.addEventListener('click', clearGrid);
-
-const gridBtn = document.querySelector('#grid');
-gridBtn.addEventListener('click', newGrid)
 
 
-createGrid(16);
-/*let gridArray = document.querySelectorAll('.square');
-gridArray.forEach(function(elem) {
-    elem.addEventListener('mouseenter', () => {
-        elem.classList.add('hover');
-    })
-})*/
+//initialize website
+createGrid(20);
 
